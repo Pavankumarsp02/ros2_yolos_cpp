@@ -134,14 +134,45 @@ message(STATUS "ONNX Runtime include: ${ONNXRUNTIME_INCLUDE_DIR}")
 message(STATUS "ONNX Runtime lib: ${ONNXRUNTIME_LIB}")
 
 # =============================================================================
-# YOLOs-CPP Library - Local Submodule
+# YOLOs-CPP Library - Download at Configuration Time
 # =============================================================================
-# YOLOs-CPP is included as a subdirectory (header-only with ONNX deps)
-set(YOLOS_CPP_DIR "${CMAKE_CURRENT_SOURCE_DIR}/YOLOs-CPP")
+set(YOLOS_CPP_VERSION "master")
+set(YOLOS_CPP_DIR "${CMAKE_BINARY_DIR}/YOLOs-CPP")
+set(YOLOS_CPP_URL "https://github.com/Geekgineer/YOLOs-CPP/archive/refs/heads/${YOLOS_CPP_VERSION}.zip")
+
 if(NOT EXISTS "${YOLOS_CPP_DIR}/include/yolos/yolos.hpp")
-  message(FATAL_ERROR "YOLOs-CPP not found at ${YOLOS_CPP_DIR}. Please ensure the library is available.")
+  message(STATUS "Downloading YOLOs-CPP from: ${YOLOS_CPP_URL}")
+  
+  file(DOWNLOAD
+    "${YOLOS_CPP_URL}"
+    "${CMAKE_BINARY_DIR}/yolos_cpp.zip"
+    SHOW_PROGRESS
+    STATUS DOWNLOAD_STATUS
+  )
+  
+  list(GET DOWNLOAD_STATUS 0 STATUS_CODE)
+  if(NOT STATUS_CODE EQUAL 0)
+    message(FATAL_ERROR "Failed to download YOLOs-CPP: ${DOWNLOAD_STATUS}")
+  endif()
+  
+  message(STATUS "Extracting YOLOs-CPP...")
+  execute_process(
+    COMMAND ${CMAKE_COMMAND} -E tar xzf "${CMAKE_BINARY_DIR}/yolos_cpp.zip"
+    WORKING_DIRECTORY "${CMAKE_BINARY_DIR}"
+    RESULT_VARIABLE EXTRACT_RESULT
+  )
+  
+  if(NOT EXTRACT_RESULT EQUAL 0)
+    message(FATAL_ERROR "Failed to extract YOLOs-CPP")
+  endif()
+  
+  # Rename extracted folder (usually YOLOs-CPP-master) to standard name
+  file(REMOVE_RECURSE "${YOLOS_CPP_DIR}")
+  file(RENAME "${CMAKE_BINARY_DIR}/YOLOs-CPP-${YOLOS_CPP_VERSION}" "${YOLOS_CPP_DIR}")
+  file(REMOVE "${CMAKE_BINARY_DIR}/yolos_cpp.zip")
 endif()
-message(STATUS "YOLOs-CPP: ${YOLOS_CPP_DIR}")
+
+message(STATUS "YOLOs-CPP Source: ${YOLOS_CPP_DIR}")
 
 # =============================================================================
 # Custom Messages (OBB Detection)
