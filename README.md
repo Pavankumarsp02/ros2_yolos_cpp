@@ -43,7 +43,7 @@
 mkdir -p ~/ros2_ws/src && cd ~/ros2_ws/src
 
 # Clone package
-git clone --recursive https://github.com/Geekgineer/ros2_yolos_cpp.git
+git clone https://github.com/Geekgineer/ros2_yolos_cpp.git
 
 # Install dependencies
 cd ~/ros2_ws
@@ -157,7 +157,7 @@ docker run --gpus all -it --rm \
 
 ## 📄 License
 
-This project is licensed under the [Apache 2.0 License](LICENSE).
+This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**. See [LICENSE](LICENSE) for details.
 
 <p align="center">
   Made with ❤️ by the <a href="https://github.com/Geekgineer/YOLOs-CPP">YOLOs-CPP Team</a>
