@@ -112,29 +112,29 @@ jobs:
       matrix:
         task:
           - name: detection
-            model_asset: yolo-detection-models.zip
+            model_asset: yolo-detection-models-tuned.zip
             model_env: YOLOS_TEST_MODEL
             labels_env: YOLOS_TEST_LABELS
             model_file: detection/YOLOv11n_voc.onnx
             labels_file: detection/voc.names
           - name: segmentation
-            model_asset: yolo-segmentation-models.zip
+            model_asset: yolo-segmentation-models-tuned.zip
             model_env: YOLOS_SEG_MODEL
             labels_env: YOLOS_SEG_LABELS
             model_file: segmentation/yolo11s-seg.onnx
             labels_file: segmentation/coco.names
           - name: pose
-            model_asset: yolo-pose-models.zip
+            model_asset: yolo-pose-models-tuned.zip
             model_env: YOLOS_POSE_MODEL
             model_file: pose/yolo11n-pose.onnx
           - name: obb
-            model_asset: yolo-obb-models.zip
+            model_asset: yolo-obb-models-tuned.zip
             model_env: YOLOS_OBB_MODEL
             labels_env: YOLOS_OBB_LABELS
             model_file: obb/yolo11n-obb.onnx
             labels_file: obb/Dota.names
           - name: classification
-            model_asset: yolo-classification-models.zip
+            model_asset: yolo-classification-models-tuned.zip
             model_env: YOLOS_CLS_MODEL
             labels_env: YOLOS_CLS_LABELS
             model_file: classification/yolo11l-cls.onnx
