@@ -1,0 +1,3 @@
+[submodule "YOLOs-CPP"]
+	path = YOLOs-CPP
+	url = https://github.com/Geekgineer/YOLOs-CPP.git
