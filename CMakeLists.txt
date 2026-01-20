@@ -138,14 +138,14 @@ message(STATUS "ONNX Runtime lib: ${ONNXRUNTIME_LIB}")
 # =============================================================================
 set(YOLOS_CPP_VERSION "master")
 set(YOLOS_CPP_DIR "${CMAKE_BINARY_DIR}/YOLOs-CPP")
-set(YOLOS_CPP_URL "https://github.com/Geekgineer/YOLOs-CPP/archive/refs/heads/${YOLOS_CPP_VERSION}.zip")
+set(YOLOS_CPP_URL "https://github.com/Geekgineer/YOLOs-CPP/archive/refs/heads/${YOLOS_CPP_VERSION}.tar.gz")
 
 if(NOT EXISTS "${YOLOS_CPP_DIR}/include/yolos/yolos.hpp")
   message(STATUS "Downloading YOLOs-CPP from: ${YOLOS_CPP_URL}")
   
   file(DOWNLOAD
     "${YOLOS_CPP_URL}"
-    "${CMAKE_BINARY_DIR}/yolos_cpp.zip"
+    "${CMAKE_BINARY_DIR}/yolos_cpp.tar.gz"
     SHOW_PROGRESS
     STATUS DOWNLOAD_STATUS
   )
@@ -157,7 +157,7 @@ if(NOT EXISTS "${YOLOS_CPP_DIR}/include/yolos/yolos.hpp")
   
   message(STATUS "Extracting YOLOs-CPP...")
   execute_process(
-    COMMAND ${CMAKE_COMMAND} -E tar xzf "${CMAKE_BINARY_DIR}/yolos_cpp.zip"
+    COMMAND ${CMAKE_COMMAND} -E tar xzf "${CMAKE_BINARY_DIR}/yolos_cpp.tar.gz"
     WORKING_DIRECTORY "${CMAKE_BINARY_DIR}"
     RESULT_VARIABLE EXTRACT_RESULT
   )
@@ -169,7 +169,7 @@ if(NOT EXISTS "${YOLOS_CPP_DIR}/include/yolos/yolos.hpp")
   # Rename extracted folder (usually YOLOs-CPP-master) to standard name
   file(REMOVE_RECURSE "${YOLOS_CPP_DIR}")
   file(RENAME "${CMAKE_BINARY_DIR}/YOLOs-CPP-${YOLOS_CPP_VERSION}" "${YOLOS_CPP_DIR}")
-  file(REMOVE "${CMAKE_BINARY_DIR}/yolos_cpp.zip")
+  file(REMOVE "${CMAKE_BINARY_DIR}/yolos_cpp.tar.gz")
 endif()
 
 message(STATUS "YOLOs-CPP Source: ${YOLOS_CPP_DIR}")

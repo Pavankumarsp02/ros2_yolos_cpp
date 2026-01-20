@@ -29,6 +29,12 @@ jobs:
       image: ros:${{ matrix.ros_distro }}-ros-base
     
     steps:
+      - name: Install Git
+        run: apt-get update && apt-get install -y git
+
+      - name: Debug Colcon
+        run: apt-get install -y python3-colcon-common-extensions && colcon --version
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
@@ -130,6 +136,9 @@ jobs:
             labels_file: classification/labels.names
     
     steps:
+      - name: Install Git
+        run: apt-get update && apt-get install -y git
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
