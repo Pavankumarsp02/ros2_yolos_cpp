@@ -1,4 +1,4 @@
-<p align="center">
+0<p align="center">
   <img src="https://raw.githubusercontent.com/Geekgineer/YOLOs-CPP/main/data/cover.png" alt="ros2_yolos_cpp" width="100%"/>
 </p>
 
@@ -29,9 +29,9 @@
   <b>Pose Estimation</b>&nbsp;&nbsp;&nbsp;
   <b>Object Detection</b>&nbsp;&nbsp;&nbsp;
   <b>Image Segmentation</b><br>
-  <img src="assets/3.gif" width="260">
-  <img src="assets/1.gif" width="260">
-  <img src="assets/2.gif" width="260">
+  <img src="assets/3.gif" width="280">
+  <img src="assets/1.gif" width="280">
+  <img src="assets/2.gif" width="280">
 </p>
 
 ---
