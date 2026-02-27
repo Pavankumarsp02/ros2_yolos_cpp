@@ -23,7 +23,7 @@ endif()
 # Build Options
 # =============================================================================
 option(BUILD_TESTING "Build tests" ON)
-option(ENABLE_GPU "Enable CUDA GPU support" OFF)
+option(ENABLE_GPU "Enable CUDA GPU support" ON)
 
 # =============================================================================
 # Find ROS 2 Dependencies
